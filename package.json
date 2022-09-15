@@ -1,0 +1,19 @@
+{
+  "name": "new-npm",
+  "version": "0.0.1",
+  "description": "this is a test package to learn npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jeremyfiel/new-npm.git"
+  },
+  "author": "jeremy fiel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeremyfiel/new-npm/issues"
+  },
+  "homepage": "https://github.com/jeremyfiel/new-npm#readme"
+}

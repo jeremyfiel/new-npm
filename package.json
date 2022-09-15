@@ -1,10 +1,35 @@
 {
-  "name": "new-npm",
+  "name": "@jeremyfiel/new-npm",
   "version": "0.0.1",
   "description": "this is a test package to learn npm",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/types/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "test": "test"
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "prepack": "npm run build",
+    "semantic-release": "semantic-release",
+    "test": "mocha"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -15,5 +40,15 @@
   "bugs": {
     "url": "https://github.com/jeremyfiel/new-npm/issues"
   },
-  "homepage": "https://github.com/jeremyfiel/new-npm#readme"
+  "homepage": "https://github.com/jeremyfiel/new-npm#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.18",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "semantic-release": "^19.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  }
 }
